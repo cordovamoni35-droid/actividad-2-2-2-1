@@ -1,64 +1,287 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Actividad 2.2.2.1 - Ecuaciones Diferenciales</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Actividad 2.2.2.1 – Campos de direcciones</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\(',right:'\\)',display:false}]});"></script>
 <style>
-body{font-family:Arial,sans-serif;max-width:900px;margin:auto;padding:20px;background:#f4f6f8;color:#222}
-header{text-align:center;background:#1a3a5f;color:white;padding:30px;border-radius:15px}
-.card{background:white;padding:20px;margin:20px 0;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
-img{width:100%;border-radius:10px;border:1px solid #ddd}
-.formula{background:#eef3ff;padding:12px;border-radius:10px;font-size:18px;text-align:center}
-footer{text-align:center;color:#777;margin-top:30px}
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --text: #1d2330;
+    --muted: #5b6475;
+    --accent: #1f5fbf;
+    --border: #dde1e8;
+    --note: #eef3fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12151b;
+      --card: #1a1f28;
+      --text: #e8ebf1;
+      --muted: #9aa3b5;
+      --accent: #7fb0ff;
+      --border: #2b3240;
+      --note: #1e2635;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    line-height: 1.6;
+  }
+  header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 1rem 1.5rem;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 1rem; }
+  header h1 { margin: 0 0 .25rem; font-size: clamp(1.5rem, 4vw, 2.1rem); }
+  header p { margin: .15rem 0; color: var(--muted); }
+  nav { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+  nav a {
+    text-decoration: none; color: var(--accent);
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: .25rem .8rem; font-size: .92rem;
+  }
+  nav a:hover { background: var(--note); }
+  section.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.4rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+  h2 { margin-top: 0; font-size: 1.4rem; }
+  h3 { margin: 1.4rem 0 .4rem; font-size: 1.05rem; color: var(--accent); }
+  .enunciado { color: var(--muted); margin-top: -.3rem; }
+  .note {
+    background: var(--note);
+    border-left: 4px solid var(--accent);
+    padding: .7rem 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    font-size: .95rem;
+  }
+  .result {
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    padding: .4rem 1rem;
+    margin: 1rem 0;
+    overflow-x: auto;
+  }
+  .katex-display { overflow-x: auto; overflow-y: hidden; }
+  figure { margin: 1.2rem 0 0; }
+  figure img {
+    width: 100%; height: auto; display: block;
+    background: #fff; border: 1px solid var(--border); border-radius: 8px;
+  }
+  figcaption { color: var(--muted); font-size: .88rem; margin-top: .5rem; }
+  ul { padding-left: 1.2rem; }
+  footer {
+    text-align: center; color: var(--muted);
+    font-size: .88rem; padding: 2rem 1rem 3rem;
+  }
+  footer a { color: var(--accent); }
+  @media print {
+    body { background: #fff; color: #000; }
+    section.card { break-inside: avoid; border-color: #bbb; }
+    nav { display: none; }
+  }
 </style>
 </head>
 <body>
 
 <header>
-<h1>Actividad 2.2.2.1</h1>
-<p>Soluciones de Ecuaciones Diferenciales con Campo de Direcciones y Curvas Solución</p>
-<p>GeoGebra + Análisis</p>
+  <div class="wrap">
+    <h1>Actividad 2.2.2.1</h1>
+    <p><strong>Campo de direcciones y líneas de flujo de la familia de curvas derivadas de la solución de ecuaciones diferenciales</strong></p>
+    <!-- EDITA ESTOS DATOS -->
+    <p>Alumno: <strong>TU NOMBRE COMPLETO</strong> · Matrícula: <strong>TU MATRÍCULA</strong></p>
+    <p>Materia: <strong>Ecuaciones Diferenciales</strong> · Profesor: <strong>NOMBRE DEL PROFESOR</strong></p>
+    <nav>
+      <a href="#ej1">1. Difusión de calor</a>
+      <a href="#ej2">2. Tubería horizontal</a>
+      <a href="#ej3">3. Fricción lineal</a>
+      <a href="#ej4">4. Crecimiento logístico</a>
+      <a href="#resumen">Resumen</a>
+    </nav>
+  </div>
 </header>
 
-<div class="card">
-<h2>1. Enfriamiento - Ley de Newton</h2>
-<p><b>Ecuación:</b> dT/dt = -k(T - T<sub>amb</sub>)</p>
-<div class="formula">T(t) = 20 + C e<sup>-kt</sup></div>
-<p><b>Equilibrio:</b> T = 20 °C</p>
-<img src="img/grafica1.png" alt="Gráfica 1">
-<p>Todas las soluciones se acercan a 20. Si está más caliente, se enfría. Si está más frío, se calienta.</p>
-</div>
+<main class="wrap">
 
-<div class="card">
-<h2>2. Flujo en tubería - Fricción cuadrática</h2>
-<p><b>Ecuación:</b> dv/dx = -(f/2D) v|v|</p>
-<div class="formula">v(x) = 1 / (0.5x + C)</div>
-<p><b>Equilibrio:</b> v = 0</p>
-<img src="img/grafica2.png" alt="Gráfica 2">
-<p>La velocidad se frena hasta llegar a 0. Mientras más rápido va, más rápido se frena.</p>
-</div>
+<!-- ===================== EJERCICIO 1 ===================== -->
+<section class="card" id="ej1">
+  <h2>Enunciado 1: Difusión de calor</h2>
+  <p class="enunciado">Ley de enfriamiento de Newton. \(T\) es la temperatura del cuerpo, \(T_{amb}\) la temperatura ambiente y \(k\) la constante de enfriamiento. Analizar el comportamiento para valores de \(C\) desde −2 hasta 2.</p>
 
-<div class="card">
-<h2>3. Velocidad con fuerza y resistencia</h2>
-<p><b>Ecuación:</b> dv/dt = -bv + F</p>
-<div class="formula">v(t) = 2 + C e<sup>-bt</sup></div>
-<p><b>Equilibrio:</b> v = F/b = 2</p>
-<img src="img/grafica3.png" alt="Gráfica 3">
-<p>Todas las velocidades terminan en 2, que es la velocidad terminal.</p>
-</div>
+  $$\frac{dT}{dt} = -k\,(T - T_{amb})$$
 
-<div class="card">
-<h2>4. Crecimiento Logístico</h2>
-<p><b>Ecuación:</b> dN/dt = rN(1 - N/K)</p>
-<div class="formula">N(t) = K / (1 + C e<sup>-rt</sup>)</div>
-<p><b>Equilibrios:</b> N = 0 y N = K = 4</p>
-<img src="img/grafica4.png" alt="Gráfica 4">
-<p>La población crece hasta la capacidad de carga K = 4 y ahí se estabiliza. No la puede superar.</p>
-</div>
+  <h3>Resolución</h3>
+  <p>La ecuación es de variables separables:</p>
+  $$\int \frac{dT}{T-T_{amb}} = -k\int dt \;\Rightarrow\; \ln|T-T_{amb}| = -kt + c_1 \;\Rightarrow\; T - T_{amb} = C\,e^{-kt}$$
+  <div class="result">
+    $$T(t) = T_{amb} + C\,e^{-kt}$$
+  </div>
+
+  <h3>Parámetros usados en la gráfica</h3>
+  <p>\(k = 0.5\), \(T_{amb} = 20\) y \(C \in \{-2,-1,0,1,2\}\), con \(T(0)=T_{amb}+C\).</p>
+
+  <h3>Análisis</h3>
+  <ul>
+    <li>\(T = T_{amb}\) (\(C=0\)) es la solución de equilibrio y es <strong>estable</strong>.</li>
+    <li>Si \(C>0\), el cuerpo está más caliente que el ambiente y <strong>se enfría</strong>.</li>
+    <li>Si \(C<0\), el cuerpo está más frío que el ambiente y <strong>se calienta</strong>.</li>
+    <li>En todos los casos \(T\to T_{amb}\) cuando \(t\to\infty\); la rapidez depende de \(k\).</li>
+  </ul>
+
+  <figure>
+    <img src="images/ejercicio_1.png" alt="Campo de direcciones y curvas solución de la ley de enfriamiento de Newton para C de -2 a 2">
+    <figcaption>Campo de direcciones (segmentos grises) y curvas solución. La línea punteada es \(T=T_{amb}=20\).</figcaption>
+  </figure>
+</section>
+
+<!-- ===================== EJERCICIO 2 ===================== -->
+<section class="card" id="ej2">
+  <h2>Enunciado 2: Flujo en tubería horizontal</h2>
+  <p class="enunciado">Líneas de flujo de la velocidad del fluido en una tubería horizontal. \(v\) es la velocidad, \(f\) el coeficiente de fricción y \(D\) el diámetro. Explorar soluciones para \(C\) entre −5 y 5.</p>
+
+  $$\frac{dv}{dx} = -\frac{f}{2D}\,v\,|v|$$
+
+  <h3>Resolución</h3>
+  <p>Sea \(a = \dfrac{f}{2D}\). Por el valor absoluto, se separa en dos casos.</p>
+  <p><strong>Caso \(v>0\)</strong> (\(v|v| = v^2\)):</p>
+  $$\frac{dv}{v^2} = -a\,dx \;\Rightarrow\; -\frac{1}{v} = -ax + C_1 \;\Rightarrow\; v = \frac{1}{ax + C}$$
+  <p><strong>Caso \(v<0\)</strong> (\(v|v| = -v^2\)):</p>
+  $$\frac{dv}{v^2} = a\,dx \;\Rightarrow\; -\frac{1}{v} = ax + C_1 \;\Rightarrow\; v = -\frac{1}{ax + C}$$
+  <div class="result">
+    $$v(x) = \pm\frac{1}{a x + C}\quad (\text{válida donde } ax + C > 0), \qquad v \equiv 0$$
+  </div>
+
+  <h3>Parámetros usados en la gráfica</h3>
+  <p>\(a = f/2D = 0.5\) y \(C \in \{-5,-4,\dots,5\}\).</p>
+
+  <h3>Análisis</h3>
+  <ul>
+    <li>\(v = 0\) es la solución de equilibrio.</li>
+    <li>Si \(C>0\), la velocidad decae suavemente hacia 0 conforme avanza \(x\) (rama positiva arriba, rama negativa abajo).</li>
+    <li>Si \(C<0\), la solución solo existe para \(x > -C/a\) y tiene una <strong>asíntota vertical</strong> en \(x=-C/a\) (velocidad infinita), por lo que no tiene sentido físico cerca de ella.</li>
+    <li>\(C=-5\) tiene su asíntota en \(x=10\), en el borde de la ventana, por eso no se aprecia.</li>
+  </ul>
+
+  <figure>
+    <img src="images/ejercicio_2.png" alt="Campo de direcciones y curvas solución del flujo en tubería horizontal para C de -5 a 5">
+    <figcaption>Campo de direcciones y las dos ramas (\(v>0\) y \(v<0\)) de cada solución.</figcaption>
+  </figure>
+</section>
+
+<!-- ===================== EJERCICIO 3 ===================== -->
+<section class="card" id="ej3">
+  <h2>Enunciado 3: Movimiento bajo fricción lineal</h2>
+  <p class="enunciado">Movimiento de una partícula con fricción lineal. \(v\) es la velocidad, \(b\) la constante de fricción y \(F\) una fuerza constante. Evaluar el comportamiento para \(C\) en el rango dado.</p>
+
+  $$\frac{dv}{dt} = -b\,v + F$$
+
+  <h3>Resolución</h3>
+  <p>Ecuación lineal de primer orden, resuelta por separación de variables:</p>
+  $$\int \frac{dv}{F - bv} = \int dt \;\Rightarrow\; -\frac{1}{b}\ln|F - bv| = t + c_1 \;\Rightarrow\; v - \frac{F}{b} = C\,e^{-bt}$$
+  <div class="result">
+    $$v(t) = \frac{F}{b} + C\,e^{-bt}$$
+  </div>
+
+  <h3>Parámetros usados en la gráfica</h3>
+  <p>\(b = 1\), \(F = 2\) y \(C \in \{-2,-1,0,1,2\}\).</p>
+
+  <h3>Análisis</h3>
+  <ul>
+    <li>Todas las soluciones tienden a la <strong>velocidad terminal</strong> \(v_\infty = F/b = 2\).</li>
+    <li>Si \(C<0\), la partícula parte de una velocidad menor y <strong>acelera</strong>.</li>
+    <li>Si \(C>0\), parte de una velocidad mayor y <strong>frena</strong>.</li>
+    <li>La constante \(b\) controla qué tan rápido se alcanza \(v_\infty\).</li>
+  </ul>
+
+  <figure>
+    <img src="images/ejercicio_3.png" alt="Campo de direcciones y curvas solución del movimiento con fricción lineal para C de -2 a 2">
+    <figcaption>Campo de direcciones y curvas solución. La línea punteada es \(v_\infty = F/b = 2\).</figcaption>
+  </figure>
+</section>
+
+<!-- ===================== EJERCICIO 4 ===================== -->
+<section class="card" id="ej4">
+  <h2>Enunciado 4: Crecimiento poblacional logístico</h2>
+  <p class="enunciado">Campo de trayectorias del modelo logístico. \(N\) es la población, \(r\) la tasa de crecimiento y \(K\) la capacidad máxima. Analizar comportamientos para \(C\) desde 0 hasta 6 (millones de personas).</p>
+
+  $$\frac{dN}{dt} = rN\left(1 - \frac{N}{K}\right)$$
+
+  <h3>Resolución</h3>
+  <p>Se separan variables y se usan fracciones parciales:</p>
+  $$\int\left(\frac{1}{N} + \frac{1/K}{1 - N/K}\right)dN = \int r\,dt \;\Rightarrow\; \ln\left|\frac{N}{K-N}\right| = rt + c_1$$
+  <p>Despejando \(N\) y usando la condición inicial \(N(0)=N_0=C\):</p>
+  <div class="result">
+    $$N(t) = \frac{K}{1 + A\,e^{-rt}}, \qquad A = \frac{K - N_0}{N_0} \quad\Longleftrightarrow\quad N(t) = \frac{K\,C}{C + (K - C)\,e^{-rt}}$$
+  </div>
+
+  <div class="note">
+    <strong>Interpretación de \(C\):</strong> se tomó \(C = N(0)\), la población inicial en millones de personas, con valores de 0 a 6.
+  </div>
+
+  <h3>Parámetros usados en la gráfica</h3>
+  <p>\(r = 0.5\), \(K = 4\) (millones) y \(C \in \{0,1,2,3,4,5,6\}\).</p>
+
+  <h3>Análisis</h3>
+  <ul>
+    <li>Equilibrios: \(N=0\) (<strong>inestable</strong>) y \(N=K\) (<strong>estable</strong>).</li>
+    <li>Si \(0 < C < K\), la población crece con forma de S (curva sigmoidea) hacia \(K\).</li>
+    <li>Si \(C = K\), la población se mantiene constante en \(K\).</li>
+    <li>Si \(C > K\), la población decrece hacia \(K\).</li>
+    <li>Si \(C = 0\), no hay población y \(N \equiv 0\).</li>
+  </ul>
+
+  <figure>
+    <img src="images/ejercicio_4.png" alt="Campo de direcciones y curvas solución del modelo logístico para C de 0 a 6 millones">
+    <figcaption>Campo de direcciones y curvas solución. La línea punteada es la capacidad máxima \(K = 4\) M.</figcaption>
+  </figure>
+</section>
+
+<!-- ===================== RESUMEN ===================== -->
+<section class="card" id="resumen">
+  <h2>Resumen de resultados</h2>
+  <figure>
+    <img src="images/graficas_4_ejercicios.png" alt="Los cuatro campos de direcciones con sus curvas solución">
+    <figcaption>Los cuatro ejercicios en una sola figura.</figcaption>
+  </figure>
+  <div style="overflow-x:auto; margin-top:1rem">
+  <table style="border-collapse:collapse; width:100%; font-size:.95rem">
+    <thead>
+      <tr style="text-align:left; border-bottom:2px solid var(--border)">
+        <th style="padding:.4rem">#</th><th style="padding:.4rem">Ecuación</th><th style="padding:.4rem">Solución general</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:.4rem">1</td><td style="padding:.4rem">\(\dfrac{dT}{dt}=-k(T-T_{amb})\)</td><td style="padding:.4rem">\(T=T_{amb}+Ce^{-kt}\)</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:.4rem">2</td><td style="padding:.4rem">\(\dfrac{dv}{dx}=-\dfrac{f}{2D}v|v|\)</td><td style="padding:.4rem">\(v=\pm\dfrac{1}{ax+C},\ v\equiv0\)</td></tr>
+      <tr style="border-bottom:1px solid var(--border)"><td style="padding:.4rem">3</td><td style="padding:.4rem">\(\dfrac{dv}{dt}=-bv+F\)</td><td style="padding:.4rem">\(v=\dfrac{F}{b}+Ce^{-bt}\)</td></tr>
+      <tr><td style="padding:.4rem">4</td><td style="padding:.4rem">\(\dfrac{dN}{dt}=rN\left(1-\dfrac{N}{K}\right)\)</td><td style="padding:.4rem">\(N=\dfrac{K}{1+Ae^{-rt}}\)</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="note">Las gráficas fueron generadas con Python (<code>matplotlib</code>) y verificadas numéricamente. El código está en <a href="campos_direcciones.py">campos_direcciones.py</a>.</p>
+</section>
+
+</main>
 
 <footer>
-<p>Actividad 2.2.2.1 - Hecha en GeoGebra</p>
+  Actividad 2.2.2.1 · Ecuaciones Diferenciales
 </footer>
+
 </body>
 </html>
