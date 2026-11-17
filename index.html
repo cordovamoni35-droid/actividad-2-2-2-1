@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actividad 2.2.2.1 - Monica Cordova Castillo</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:950px;margin:auto;padding:20px;background:#f4f6f8;color:#222}
+header{background:white;padding:30px;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+h1{font-size:42px;margin:0 0 10px 0}
+.sub{font-size:18px;color:#444;line-height:1.5}
+nav{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
+nav a{text-decoration:none;color:#1a5fc1;border:1px solid #dbe4f0;padding:8px 14px;border-radius:20px;background:#fff;font-size:15px}
+.card{background:white;padding:22px;margin:20px 0;border-radius:15px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+img{width:100%;border-radius:10px;border:1px solid #ddd}
+.formula{background:#eef3ff;padding:12px;border-radius:10px;font-size:18px;text-align:center;margin:12px 0}
+table{width:100%;border-collapse:collapse;margin-top:10px}
+td,th{border:1px solid #ddd;padding:10px;text-align:center}
+th{background:#1a3a5f;color:white}
+footer{text-align:center;color:#777;margin-top:30px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Actividad 2.2.2.1</h1>
+<p class="sub"><b>Campo de direcciones y líneas de flujo de la familia de curvas derivadas de la solución de ecuaciones diferenciales</b></p>
+<p class="sub">Alumno: <b>Monica Cordova Castillo</b> · Matrícula: <b>25305040</b><br>
+Materia: <b>Calculo de varias variables</b> · Profesor: <b>Javier Garcia Lara</b></p>
+<nav>
+<a href="#p1">1. Difusión de calor</a>
+<a href="#p2">2. Tubería horizontal</a>
+<a href="#p3">3. Fricción lineal</a>
+<a href="#p4">4. Crecimiento logístico</a>
+<a href="#resumen">Resumen</a>
+</nav>
+</header>
+
+<div class="card" id="p1">
+<h2>1. Difusión de calor - Ley de Newton</h2>
+<p><b>Ecuación:</b> dT/dt = -k(T - T<sub>amb</sub>)</p>
+<div class="formula">T(t) = 20 + C e<sup>-kt</sup></div>
+<p><b>Equilibrio:</b> T = 20</p>
+<img src="img/grafica1.png" alt="Gráfica 1">
+<p>Todas las soluciones se acercan a 20. Si está más caliente, se enfría. Si está más frío, se calienta. La gráfica fue hecha en GeoGebra con campo de direcciones y curvas solución.</p>
+</div>
+
+<div class="card" id="p2">
+<h2>2. Tubería horizontal - Fricción cuadrática</h2>
+<p><b>Ecuación:</b> dv/dx = -(f/2D) v|v|</p>
+<div class="formula">v(x) = 1 / (0.5x + C)</div>
+<p><b>Equilibrio:</b> v = 0</p>
+<img src="img/grafica2.png" alt="Gráfica 2">
+<p>La velocidad se frena hasta llegar a 0. Mientras más rápido va, más rápido se frena. Gráfica hecha en GeoGebra.</p>
+</div>
+
+<div class="card" id="p3">
+<h2>3. Fricción lineal - Velocidad con fuerza y resistencia</h2>
+<p><b>Ecuación:</b> dv/dt = -bv + F</p>
+<div class="formula">v(t) = 2 + C e<sup>-bt</sup></div>
+<p><b>Equilibrio:</b> v = F/b = 2</p>
+<img src="img/grafica3.png" alt="Gráfica 3">
+<p>Todas las velocidades terminan en 2, que es la velocidad terminal. Gráfica hecha en GeoGebra.</p>
+</div>
+
+<div class="card" id="p4">
+<h2>4. Crecimiento logístico</h2>
+<p><b>Ecuación:</b> dN/dt = rN(1 - N/K)</p>
+<div class="formula">N(t) = K / (1 + C e<sup>-rt</sup>)</div>
+<p><b>Equilibrios:</b> N = 0 y N = K = 4</p>
+<img src="img/grafica4.png" alt="Gráfica 4">
+<p>La población crece hasta la capacidad de carga K = 4 y ahí se estabiliza. No la puede superar. Gráfica hecha en GeoGebra.</p>
+</div>
+
+<div class="card" id="resumen">
+<h2>Resumen</h2>
+<table>
+<tr><th>Problema</th><th>Ecuación</th><th>Equilibrio</th></tr>
+<tr><td>1. Difusión de calor</td><td>dT/dt = -k(T - T<sub>amb</sub>)</td><td>20</td></tr>
+<tr><td>2. Tubería horizontal</td><td>dv/dx = -(f/2D) v|v|</td><td>0</td></tr>
+<tr><td>3. Fricción lineal</td><td>dv/dt = -bv + F</td><td>2</td></tr>
+<tr><td>4. Crecimiento logístico</td><td>dN/dt = rN(1 - N/K)</td><td>0 y 4</td></tr>
+</table>
+<p>En los 4 casos, las curvas solución no se cruzan entre sí y todas tienden a su equilibrio estable.</p>
+</div>
+
+<footer>
+<p>Actividad 2.2.2.1 - Monica Cordova Castillo - 25305040<br>Calculo de varias variables - Prof. Javier Garcia Lara<br>Gráficas elaboradas en GeoGebra</p>
+</footer>
+</body>
+</html>
